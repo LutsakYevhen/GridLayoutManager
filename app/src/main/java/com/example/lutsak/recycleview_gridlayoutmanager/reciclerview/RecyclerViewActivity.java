@@ -30,10 +30,10 @@ public class RecyclerViewActivity extends AppCompatActivity {
     }
 
     private void initializeImages() {
-        random = new Random(24);
+        random = new Random(Constant.IMAGES.length);
         images = new ArrayList<>();
-        for (int i = 0; i < Constant.IMAGES.length * 500; i++) {
-            images.add(Constant.IMAGES[random.nextInt(24)]);
+        for (int i = 0; i < Constant.IMAGES.length * Constant.NUMBER_OF_IMG_MULTIPLICATION; i++) {
+            images.add(Constant.IMAGES[random.nextInt(Constant.IMAGES.length)]);
         }
     }
 

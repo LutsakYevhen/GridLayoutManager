@@ -12,14 +12,12 @@ import android.view.WindowManager;
 import android.widget.ImageView;
 import com.example.lutsak.recycleview_gridlayoutmanager.R;
 import com.squareup.picasso.Picasso;
-
 import java.util.ArrayList;
 
 public class ImageAdapter extends RecyclerView.Adapter<ImageAdapter.ViewHolder> {
 
     private ArrayList<String> images;
     private Activity context;
-    private View view;
     private ViewHolder myHolder;
     private int screenWidth;
     private ViewHolder dataObjectHolder;
@@ -33,7 +31,6 @@ public class ImageAdapter extends RecyclerView.Adapter<ImageAdapter.ViewHolder> 
             Point size = new Point();
             display.getSize(size);
             screenWidth = size.x;
-
     }
 
     @Override
@@ -53,7 +50,6 @@ public class ImageAdapter extends RecyclerView.Adapter<ImageAdapter.ViewHolder> 
                 .resize(screenWidth / 2, screenWidth / 2)
                 .centerCrop()
                 .into((myHolder.images));
-
     }
 
     @Override
@@ -69,4 +65,5 @@ public class ImageAdapter extends RecyclerView.Adapter<ImageAdapter.ViewHolder> 
             images = itemView.findViewById(R.id.img_view_row);
         }
     }
+
 }

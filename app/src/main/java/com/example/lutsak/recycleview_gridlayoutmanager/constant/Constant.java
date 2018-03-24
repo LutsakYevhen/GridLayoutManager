@@ -1,10 +1,24 @@
 package com.example.lutsak.recycleview_gridlayoutmanager.constant;
 
+import android.content.res.Resources;
+
 public class Constant {
 
-    public static final int NUMBER_OF_IMG_MULTIPLICATION = 500;
+    //Log tag for debugging.
+    public static final String LOG_TAG = "debugLog";
 
-    public static final String[] IMAGES = new String[]{
+    /* Multiply this number for our unique images
+     we get array of image to represents inside RecyclerView*/
+    private static final int NUMBER_OF_IMG_MULTIPLICATION = 500;
+
+    //Number of ImageView to represent inside width of screen.
+    private static final int SPAN_COUNT = 2;
+
+    //Size of screen in pixel.
+    public static int SCREEN_WIDTH = Resources.getSystem().getDisplayMetrics().widthPixels;
+
+    //Array of unique images(URL)
+    private static final String[] IMAGES = new String[]{
             "https://lh6.googleusercontent.com/-55osAWw3x0Q/URquUtcFr5I/AAAAAAAAAbs/rWlj1RUKrYI/s1024/A%252520Photographer.jpg",
             "https://lh4.googleusercontent.com/--dq8niRp7W4/URquVgmXvgI/AAAAAAAAAbs/-gnuLQfNnBA/s1024/A%252520Song%252520of%252520Ice%252520and%252520Fire.jpg",
             "https://lh5.googleusercontent.com/-7qZeDtRKFKc/URquWZT1gOI/AAAAAAAAAbs/hqWgteyNXsg/s1024/Another%252520Rockaway%252520Sunset.jpg",
@@ -24,4 +38,17 @@ public class Constant {
             "https://lh4.googleusercontent.com/-GztnWEIiMz8/URqukVCU7bI/AAAAAAAAAbs/jo2Hjv6MZ6M/s1024/Countryside.jpg",
             "https://lh4.googleusercontent.com/-bEg9EZ9QoiM/URquklz3FGI/AAAAAAAAAbs/UUuv8Ac2BaE/s1024/Death%252520Valley%252520-%252520Dunes.jpg",
     };
+
+    public int getNumberOfItemMultiplication(){
+        return NUMBER_OF_IMG_MULTIPLICATION;
+    }
+
+    public String[] getImagesUrl(){
+        return IMAGES;
+    }
+
+    public int getSpanCount(){
+        return SPAN_COUNT;
+    }
+
 }

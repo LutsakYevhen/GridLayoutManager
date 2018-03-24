@@ -11,6 +11,8 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        // TODO: add another two button with other two LayoutManager.
+
         Intent intent = new Intent(this, RecyclerViewActivity.class);
         startActivity(intent);
     }

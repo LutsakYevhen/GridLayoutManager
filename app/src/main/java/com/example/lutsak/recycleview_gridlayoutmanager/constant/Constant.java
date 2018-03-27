@@ -2,9 +2,10 @@ package com.example.lutsak.recycleview_gridlayoutmanager.constant;
 
 import android.content.res.Resources;
 
+// TODO: remove
 public class Constant {
 
-    //Log tag for debugging.
+    //TODO: remove from here
     public static final String LOG_TAG = "debugLog";
 
     /* Multiply this number for our unique images

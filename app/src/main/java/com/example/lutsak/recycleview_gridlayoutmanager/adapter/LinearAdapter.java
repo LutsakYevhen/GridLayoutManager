@@ -19,6 +19,7 @@ public class LinearAdapter extends RecyclerView.Adapter<LinearAdapter.ViewHolder
     private ArrayList<String> mImages;
     private Activity mContext;
 
+    //todo; remove activity from here
     public LinearAdapter(Activity context, ArrayList<String> images){
         this.mContext = context;
         this.mImages = images;
@@ -57,6 +58,7 @@ public class LinearAdapter extends RecyclerView.Adapter<LinearAdapter.ViewHolder
     static class ViewHolder extends RecyclerView.ViewHolder{
         ImageView image;
 
+        @SuppressWarnings("SuspiciousNameCombination")
         ViewHolder(View itemView) {
             super(itemView);
             image = itemView.findViewById(R.id.image_view_container);

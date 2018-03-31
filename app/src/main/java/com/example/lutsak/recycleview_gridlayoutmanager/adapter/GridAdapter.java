@@ -1,6 +1,5 @@
 package com.example.lutsak.recycleview_gridlayoutmanager.adapter;
 
-import android.app.Activity;
 import android.content.res.Resources;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -16,22 +15,18 @@ public class GridAdapter extends RecyclerView.Adapter<GridAdapter.ViewHolder> {
 
     private static final String TAG = GridAdapter.class.getSimpleName();
 
-    private ArrayList<String> mImages;
-    private Activity mContext;
     private static final int SPAN_COUNT = 2;
 
-    public GridAdapter(Activity context, ArrayList<String> images){
-        this.mContext = context;
+    private ArrayList<String> mImages;
+
+    public GridAdapter(ArrayList<String> images){
         this.mImages = images;
     }
-
 
     /* This method return ViewHolder with parameter view, got using LayoutInflater */
     @Override
     public GridAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-
-        View view = LayoutInflater.from(mContext)
-                .inflate(R.layout.image_container, parent, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.image_container, parent, false);
         return new ViewHolder(view);
     }
 
@@ -44,7 +39,7 @@ public class GridAdapter extends RecyclerView.Adapter<GridAdapter.ViewHolder> {
         Log.d(TAG, "onBindingViewHolder width : " + holder.image.getLayoutParams().width);
         Log.d(TAG, "onBindingViewHolder high : " + holder.image.getLayoutParams().height);
 
-        Picasso.with(mContext)
+        Picasso.with(holder.itemView.getContext())
                 .load(mImages.get(position))
                 .placeholder(R.drawable.loading)
                 .into((holder.image));
@@ -56,7 +51,8 @@ public class GridAdapter extends RecyclerView.Adapter<GridAdapter.ViewHolder> {
     }
 
     static class ViewHolder extends RecyclerView.ViewHolder{
-         ImageView image;
+
+        ImageView image;
 
         ViewHolder(View itemView) {
             super(itemView);

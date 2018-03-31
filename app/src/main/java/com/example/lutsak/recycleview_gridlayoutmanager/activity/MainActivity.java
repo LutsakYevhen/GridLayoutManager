@@ -12,11 +12,6 @@ import com.example.lutsak.recycleview_gridlayoutmanager.reciclerview.RecyclerVie
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
     private static final String TAG = MainActivity.class.getSimpleName();
-    private static final String LAYOUT_MANAGER = "Layout Manager";
-    private static final String LINEAR_LAYOUT_MANAGER = "Linear Layout Manager";
-    private static final String GRID_LAYOUT_MANAGER = "Grid Layout Manager";
-    private static final String STAGGERED_GRID_LAYOUT_MANAGER = "Staggered Grid Layout Manager";
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,27 +29,32 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         Intent intent = new Intent(this, RecyclerViewActivity.class);
         switch (v.getId()){
             case R.id.linear_layout_manager_button:
-                intent.putExtra(LAYOUT_MANAGER, LINEAR_LAYOUT_MANAGER);
+                RecyclerViewActivity.fillStartIntent(intent, RecyclerViewActivity.LayoutManager.LINEAR_LAYOUT_MANAGER);
                 break;
             case R.id.grid_layout_button:
-                intent.putExtra(LAYOUT_MANAGER, GRID_LAYOUT_MANAGER);
+                RecyclerViewActivity.fillStartIntent(intent, RecyclerViewActivity.LayoutManager.GRID_LAYOUT_MANAGER);
                 break;
             case R.id.staggered_grid_layout_button:
-                intent.putExtra(LAYOUT_MANAGER, STAGGERED_GRID_LAYOUT_MANAGER);
+                RecyclerViewActivity.fillStartIntent(intent, RecyclerViewActivity.LayoutManager.STAGGERED_GRID_LAYOUT_MANAGER);
                 break;
             default:break;
         }
         startActivity(intent);
+
+
     }
 
     private void findView(){
 
-        Button mLinearLayoutButton = findViewById(R.id.linear_layout_manager_button);
-        Button mGridLayoutManager = findViewById(R.id.grid_layout_button);
+        /**
+         * Naming convention is wrong
+         */
+        Button linearLayoutButton = findViewById(R.id.linear_layout_manager_button);
+        View gridLayoutManager = findViewById(R.id.grid_layout_button);
         Button mStaggeredGridLayout = findViewById(R.id.staggered_grid_layout_button);
 
-        mLinearLayoutButton.setOnClickListener(this);
-        mGridLayoutManager.setOnClickListener(this);
+        linearLayoutButton.setOnClickListener(this);
+        gridLayoutManager.setOnClickListener(this);
         mStaggeredGridLayout.setOnClickListener(this);
     }
 }

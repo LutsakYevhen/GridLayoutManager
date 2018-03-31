@@ -15,11 +15,11 @@ import java.util.Random;
 public class StaggeredGridAdapter extends RecyclerView.Adapter<StaggeredGridAdapter.ViewHolder> {
 
     private static final String TAG = GridAdapter.class.getSimpleName();
+    private static final int RANDOM_BOUND = 4;
+    private static final int HEIGHT_MULTIPLIER = 300;
 
     private ArrayList<String> mImages;
     private Activity mContext;
-    private static final int RANDOM_BOUND = 4;
-    private static final int HEIGHT_MULTIPLIER = 300;
 
     public StaggeredGridAdapter(Activity context, ArrayList<String> images){
         this.mContext = context;
@@ -56,6 +56,23 @@ public class StaggeredGridAdapter extends RecyclerView.Adapter<StaggeredGridAdap
     }
 
     static class ViewHolder extends RecyclerView.ViewHolder{
+
+        /**
+         * Naming convention is wrong
+         *
+         *
+         public class MyClass {
+
+            public static final int SOME_CONSTANT = 42;
+            public int publicField;
+            private static MyClass sSingleton;
+            int mPackagePrivate;
+            private int mPrivate;
+            protected int mProtected;
+
+         }
+         *
+         */
         ImageView image;
         Random randomHeight = new Random();
 

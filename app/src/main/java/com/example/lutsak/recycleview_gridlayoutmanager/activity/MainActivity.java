@@ -26,35 +26,34 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     @Override
     public void onClick(View v) {
+        
         Intent intent = new Intent(this, RecyclerViewActivity.class);
+        
         switch (v.getId()){
             case R.id.linear_layout_manager_button:
-                RecyclerViewActivity.fillStartIntent(intent, RecyclerViewActivity.LayoutManager.LINEAR_LAYOUT_MANAGER);
+                RecyclerViewActivity.fillStartIntent(intent,
+                        RecyclerViewActivity.LayoutManager.LINEAR_LAYOUT_MANAGER);
                 break;
             case R.id.grid_layout_button:
-                RecyclerViewActivity.fillStartIntent(intent, RecyclerViewActivity.LayoutManager.GRID_LAYOUT_MANAGER);
+                RecyclerViewActivity.fillStartIntent(intent,
+                        RecyclerViewActivity.LayoutManager.GRID_LAYOUT_MANAGER);
                 break;
             case R.id.staggered_grid_layout_button:
-                RecyclerViewActivity.fillStartIntent(intent, RecyclerViewActivity.LayoutManager.STAGGERED_GRID_LAYOUT_MANAGER);
+                RecyclerViewActivity.fillStartIntent(intent,
+                        RecyclerViewActivity.LayoutManager.STAGGERED_GRID_LAYOUT_MANAGER);
                 break;
-            default:break;
         }
         startActivity(intent);
-
-
     }
 
     private void findView(){
 
-        /**
-         * Naming convention is wrong
-         */
         Button linearLayoutButton = findViewById(R.id.linear_layout_manager_button);
         View gridLayoutManager = findViewById(R.id.grid_layout_button);
-        Button mStaggeredGridLayout = findViewById(R.id.staggered_grid_layout_button);
+        Button staggeredGridLayout = findViewById(R.id.staggered_grid_layout_button);
 
         linearLayoutButton.setOnClickListener(this);
         gridLayoutManager.setOnClickListener(this);
-        mStaggeredGridLayout.setOnClickListener(this);
+        staggeredGridLayout.setOnClickListener(this);
     }
 }

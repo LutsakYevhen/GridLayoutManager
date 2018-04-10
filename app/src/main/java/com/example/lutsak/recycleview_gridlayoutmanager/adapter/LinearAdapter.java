@@ -1,6 +1,5 @@
 package com.example.lutsak.recycleview_gridlayoutmanager.adapter;
 
-import android.app.Activity;
 import android.content.res.Resources;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -14,14 +13,12 @@ import java.util.ArrayList;
 
 public class LinearAdapter extends RecyclerView.Adapter<LinearAdapter.ViewHolder> {
 
-    private static final String TAG = GridAdapter.class.getSimpleName();
+    private static final String TAG = LinearAdapter.class.getSimpleName();
 
     private ArrayList<String> mImages;
-    private Activity mContext;
 
     //todo; remove activity from here
-    public LinearAdapter(Activity context, ArrayList<String> images){
-        this.mContext = context;
+    public LinearAdapter(ArrayList<String> images){
         this.mImages = images;
     }
 
@@ -30,7 +27,7 @@ public class LinearAdapter extends RecyclerView.Adapter<LinearAdapter.ViewHolder
     @Override
     public LinearAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
 
-        View view = LayoutInflater.from(mContext)
+        View view = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.image_container, parent, false);
         return new ViewHolder(view);
     }
@@ -44,7 +41,7 @@ public class LinearAdapter extends RecyclerView.Adapter<LinearAdapter.ViewHolder
         Log.d(TAG, "onBindingViewHolder width : " + holder.image.getLayoutParams().width);
         Log.d(TAG, "onBindingViewHolder high : " + holder.image.getLayoutParams().height);
 
-        Picasso.with(mContext)
+        Picasso.with(holder.itemView.getContext())
                 .load(mImages.get(position))
                 .placeholder(R.drawable.loading)
                 .into((holder.image));

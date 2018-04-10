@@ -21,11 +21,9 @@ public class RecyclerViewActivity extends AppCompatActivity {
 
     private static final int SPAN_COUNT = 2;
     private static final int ORIENTATION = 1;
-
     private static final String KEY_LAYOUT_MANAGER = "KEY_LAYOUT_MANAGER";
 
     private final ArrayList<String> mImages = new ArrayList<>();
-
     private RecyclerView mRecyclerView;
 
     private static final String[] IMAGES = new String[]{
@@ -83,34 +81,10 @@ public class RecyclerViewActivity extends AppCompatActivity {
         }
     }
 
-    private void setStaggeredGridLayoutManager() {
-        RecyclerView.LayoutManager layoutManager =
-                new StaggeredGridLayoutManager(SPAN_COUNT, ORIENTATION);
-
-        mRecyclerView.setLayoutManager(layoutManager);
-    }
-
-    // TODO remove
-    private void setLinearAdapter() {
-        RecyclerView.Adapter adapter = new LinearAdapter(this, mImages);
-        mRecyclerView.setAdapter(adapter);
-    }
-
-    // TODO remove
-    private void setGridAdapter() {
-        RecyclerView.Adapter adapter = new GridAdapter(mImages);
-        mRecyclerView.setAdapter(adapter);
-    }
-
-    // TODO remove
-    private void setStaggeredGridAdapter() {
-        RecyclerView.Adapter adapter = new StaggeredGridAdapter(this, mImages);
-        mRecyclerView.setAdapter(adapter);
-    }
-
     private void defineLayoutManager(){
         Intent intent = getIntent();
-        LayoutManager layoutManager = (LayoutManager) intent.getSerializableExtra(KEY_LAYOUT_MANAGER);
+        LayoutManager layoutManager =
+                (LayoutManager) intent.getSerializableExtra(KEY_LAYOUT_MANAGER);
         RecyclerView.LayoutManager lm = null;
         switch (layoutManager){
             case LINEAR_LAYOUT_MANAGER:
@@ -120,30 +94,30 @@ public class RecyclerViewActivity extends AppCompatActivity {
                 lm = new GridLayoutManager(this, SPAN_COUNT);
                 break;
             case STAGGERED_GRID_LAYOUT_MANAGER:
-                // TODO: remove
-                setStaggeredGridLayoutManager();
+                lm = new StaggeredGridLayoutManager(SPAN_COUNT, ORIENTATION);
                 break;
         }
         mRecyclerView.setLayoutManager(lm);
-
     }
 
     private void defineAdapter(){
+
         Intent intent = getIntent();
-        LayoutManager layoutManager = (LayoutManager) intent.getSerializableExtra(KEY_LAYOUT_MANAGER);
+        LayoutManager layoutManager =
+                (LayoutManager) intent.getSerializableExtra(KEY_LAYOUT_MANAGER);
+        RecyclerView.Adapter adapter = null;
 
         switch (layoutManager){
             case LINEAR_LAYOUT_MANAGER:
-                setLinearAdapter();
+                adapter = new LinearAdapter(mImages);
                 break;
             case GRID_LAYOUT_MANAGER:
-                setGridAdapter();
+                adapter = new GridAdapter(mImages);
                 break;
             case STAGGERED_GRID_LAYOUT_MANAGER:
-                setStaggeredGridAdapter();
+                adapter = new StaggeredGridAdapter(mImages);
                 break;
-            default:
-                throw new RuntimeException("ops... somethings wrong. This type of layut manager is not handled " + layoutManager);
         }
+        mRecyclerView.setAdapter(adapter);
     }
 }

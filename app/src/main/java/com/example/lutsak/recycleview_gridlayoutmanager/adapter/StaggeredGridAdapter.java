@@ -1,6 +1,5 @@
 package com.example.lutsak.recycleview_gridlayoutmanager.adapter;
 
-import android.app.Activity;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -14,15 +13,13 @@ import java.util.Random;
 
 public class StaggeredGridAdapter extends RecyclerView.Adapter<StaggeredGridAdapter.ViewHolder> {
 
-    private static final String TAG = GridAdapter.class.getSimpleName();
+    private static final String TAG = StaggeredGridAdapter.class.getSimpleName();
     private static final int RANDOM_BOUND = 4;
     private static final int HEIGHT_MULTIPLIER = 300;
 
     private ArrayList<String> mImages;
-    private Activity mContext;
 
-    public StaggeredGridAdapter(Activity context, ArrayList<String> images){
-        this.mContext = context;
+    public StaggeredGridAdapter(ArrayList<String> images){
         this.mImages = images;
     }
 
@@ -30,24 +27,24 @@ public class StaggeredGridAdapter extends RecyclerView.Adapter<StaggeredGridAdap
     @Override
     public StaggeredGridAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
 
-        View view = LayoutInflater.from(mContext)
+        View view = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.image_container, parent, false);
         return new ViewHolder(view);
     }
 
     /*
-     * This method use Picasso library, his work is to take an image from web source and set to
+     * This method use Picasso library, his work is to take an mImage from web source and set to
      * our ImageView.
      */
     @Override
     public void onBindViewHolder(StaggeredGridAdapter.ViewHolder holder, int position) {
-        Log.d(TAG, "onBindingViewHolder width : " + holder.image.getLayoutParams().width);
-        Log.d(TAG, "onBindingViewHolder high : " + holder.image.getLayoutParams().height);
+        Log.d(TAG, "onBindingViewHolder width : " + holder.mImage.getLayoutParams().width);
+        Log.d(TAG, "onBindingViewHolder high : " + holder.mImage.getLayoutParams().height);
 
-        Picasso.with(mContext)
+        Picasso.with(holder.mImage.getContext())
                 .load(mImages.get(position))
                 .placeholder(R.drawable.loading)
-                .into((holder.image));
+                .into((holder.mImage));
     }
 
     @Override
@@ -57,39 +54,23 @@ public class StaggeredGridAdapter extends RecyclerView.Adapter<StaggeredGridAdap
 
     static class ViewHolder extends RecyclerView.ViewHolder{
 
-        /**
-         * Naming convention is wrong
-         *
-         *
-         public class MyClass {
-
-            public static final int SOME_CONSTANT = 42;
-            public int publicField;
-            private static MyClass sSingleton;
-            int mPackagePrivate;
-            private int mPrivate;
-            protected int mProtected;
-
-         }
-         *
-         */
-        ImageView image;
-        Random randomHeight = new Random();
+        private ImageView mImage;
+        private Random mRandomHeight = new Random();
 
         ViewHolder(View itemView) {
             super(itemView);
-            image = itemView.findViewById(R.id.image_view_container);
+            mImage = itemView.findViewById(R.id.image_view_container);
 
-            int height = randomHeight.nextInt(RANDOM_BOUND);
+            int height = mRandomHeight.nextInt(RANDOM_BOUND);
             if (height == 0){
                 height++;
                 height = height * HEIGHT_MULTIPLIER;
             } else {
                 height = height * HEIGHT_MULTIPLIER;
             }
-            image.getLayoutParams().height = height;
-            Log.d(TAG, " ViewHolder width : " + image.getLayoutParams().width);
-            Log.d(TAG, " ViewHolder height : " + image.getLayoutParams().height);
+            mImage.getLayoutParams().height = height;
+            Log.d(TAG, " ViewHolder width : " + mImage.getLayoutParams().width);
+            Log.d(TAG, " ViewHolder height : " + mImage.getLayoutParams().height);
         }
     }
 }
